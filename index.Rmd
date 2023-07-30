@@ -37,7 +37,7 @@ This is the landing page for my data analysis project. Below, you'll find links 
 
 ## Table of Contents
 
-1. [Microbiology](microbiology.html)
+### 1. [Microbiology](microbiology.html)
 `r # 2. [Radiochemistry](radiochemistry.html) `
 `r # 3. [Modeling](modeling.html) `
 
