@@ -21,7 +21,7 @@ navbar:
 output:
   html_document:
     theme: cosmo
-    toc: true
+    toc: false
     toc_float: true
     toc_collapsed: false
     toc_depth: 2
