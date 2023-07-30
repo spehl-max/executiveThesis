@@ -47,7 +47,12 @@ Meta_Data <- read_csv(here("data", "meta_data.csv"),
 AT <- read_csv(here("data", "abundance_table.csv"))
 clean_TT <- read_csv(here("data", "taxa_table.csv"))
 
+qPCR_data <- read_csv(here("data", "qPCR.csv"), col_types = cols(Well = col_skip(), 
+    `Target Name` = col_skip(), Task = col_skip(), 
+    Reporter = col_skip(), Quencher = col_skip(), 
+    Cт = col_double()), na = "Undetermined") %>% mutate(Quantity = ifelse(is.na(Quantity), 0, Quantity))
 
+combined_MD <- Meta_Data %>% group_by(sample_name_abridged) %>% slice(1) %>% select(-sample_name_long) %>% mutate(isFieldSample = as.logical(ifelse(Location_Clean != "Treatment Plant", "TRUE", "FALSE"))) %>% ungroup()
 ```
 
 <br />
@@ -248,3 +253,39 @@ ggplot(diversityMeasures, aes(x = factor(Station_Num), y = shannonDiv)) + geom_b
 <br />
 
 #### There were no significant differences between group-means of the field stations as determined by a one-way ANOVA (F(3,25) = 0.83, p = 0.49).
+
+<br />
+
+### Next, the relative abundance of the Order _Sphingomonadales_, and the genii, _Nitrospira_, _Mycobacterium_, and _Hyphomicrobium_ were plotted against the distance from the treatment plant. 
+
+```{r specPhyla}
+combined_AT_matrix <- AT %>% column_to_rownames("sample_name_abridged") %>% as.matrix(.)
+
+combined_AT_PR <- data.frame(t(combined_AT_matrix), "ASV_Name" = rownames(t(combined_AT_matrix))) %>% select(ASV_Name, everything()) %>%
+            pivot_longer(cols = starts_with("tap"), values_to = "Relative_Abundance", names_to = "sample_name_abridged") %>% left_join(clean_TT, by = "ASV_Name") %>%
+  filter(Order == "Sphingomonadales" | Genus == "Nitrospira" | Genus == "Mycobacterium" | Genus == "Hyphomicrobium") %>%
+  mutate(Genus = ifelse(Order == "Sphingomonadales", "Sphingomonadales", Genus)) %>% 
+            group_by(sample_name_abridged) %>% summarise(RA_PR = sum(Relative_Abundance), .groups = "drop") %>% 
+            left_join(combined_MD, by = "sample_name_abridged") %>% filter(!is.na(RA_PR)) %>% group_by(Collection_Date) %>% mutate(count_date = n()) %>% filter(count_date == 3 & Collection_Date != "2020-09-01" & Collection_Date != "2020-12-08")
+
+
+ggplot(data = combined_AT_PR, aes(x = distance_from_plant_km, y = RA_PR*100)) + geom_point(size = 2) + scale_y_continuous(limits = c(0, 4), breaks = seq(0, 4, 1)) + ylab("Community Composition (%)") + xlab("Distance from Treatment Plant (km)") + facet_wrap(facets = vars(Collection_Date)) + geom_line()
+```
+
+### These taxa tended to increase in their percent relative community composition as a funtion of distance from the treatment plant. In water containing oxidizable nitrogen, Nitrospira start to multiply. Mycobacterium can form biofilms on the interior surfaces of water distribution systems, and as disinfection residuals decline, mycobacterium may begin to increasingly slough from the biofilm. 
+
+<br />
+
+### Next, a qPCR assay was used to quantify the copy numbers of the 16S region of the *legionella* genome.
+
+```{r legInvestigation}
+qPCR_data_abridged <- qPCR_data %>% mutate(sample_name_abridged = str_sub(`Sample Name`, start = 1L, end = 5L))  %>% select(sample_name_abridged, Quantity) %>% filter(str_detect(sample_name_abridged, "tap")) %>% group_by(sample_name_abridged) %>% arrange(-Quantity) %>% slice(1)
+
+qPCR_data_abridged <- qPCR_data_abridged %>% left_join(combined_MD, by = "sample_name_abridged") %>% mutate(copies_per_L = Quantity * 4 / Volume_Filtered_L)
+
+ggplot(qPCR_data_abridged %>% filter(distance_from_plant_km > 0), aes(x = Station_Num, y = copies_per_L)) + geom_point() + ylab("Copies of Legionella per liter") + xlab("station number") + geom_segment(x = 0, y = 4, xend = 5, yend = 4, color = "red") + geom_segment(x = 0, y = 60, xend = 5, yend = 60, color = "blue")
+
+```
+\  
+
+### Scatterplot of *legionella* copies per liter (determined by qPCR) by station number. The red line indicates the detection limit, and the blue line indicates the quantification limit.
