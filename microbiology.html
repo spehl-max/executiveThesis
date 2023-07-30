@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Microbiology</title>
+
+<script src="microbiology_files/header-attrs-2.22/header-attrs.js"></script>
+<script src="microbiology_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="microbiology_files/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="microbiology_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="microbiology_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="microbiology_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="microbiology_files/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="microbiology_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="microbiology_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="microbiology_files/navigation-1.1/tabsets.js"></script>
+<link href="microbiology_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="microbiology_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Microbiology</h1>
+
+</div>
+
+
+<!-- 
+Step one:
+
+Import microbiology and water chemistry data
+
+-->
+<div id="introduction" class="section level3">
+<h3>Introduction:</h3>
+<p><br /></p>
+<div
+id="throughout-the-summer-and-fall-of-2020-water-samples-were-collected-from-the-whitefish-bay-wisconsin-water-distribution-system.-samples-were-analyzed-to-determine-the-effect-of-water-rention-time-on-microbial-growth."
+class="section level4">
+<h4>Throughout the summer and fall of 2020, water samples were collected
+from the Whitefish Bay, Wisconsin water distribution system. Samples
+were analyzed to determine the effect of water rention time on microbial
+growth.</h4>
+<p><br /></p>
+<div
+id="the-following-code-loads-the-packages-used-in-this-project-imports-the-sampling-data-and-prepares-the-data-for-analysis."
+class="section level5">
+<h5>The following code loads the packages used in this project, imports
+the sampling data and prepares the data for analysis.</h5>
+<p><br /></p>
+<pre class="r"><code>knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align = &#39;center&#39;)
+
+#load necessary packages
+library(tidyverse)
+library(here)
+library(ggthemes)
+library(ggprism)
+library(vegan)
+
+#Set a ggplot theme
+theme_set(theme_minimal())
+
+#import water quality data
+Meta_Data &lt;- read_csv(here(&quot;data&quot;, &quot;meta_data.csv&quot;),
+                      col_types = cols(Collection_Date = col_date(format = &quot;%m/%d/%y&quot;))) %&gt;% mutate(Station_Num = fct_relevel(Station_Num, &quot;Post Filtration&quot;, &quot;Post Chlorination&quot;, &quot;Finished Water&quot;, &quot;1&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;)) %&gt;%
+               mutate(distance_from_plant_km = round(miles_from_plant*1.61,2)) %&gt;% mutate(Location_Clean = fct_relevel(Location_Clean, &quot;Treatment Plant&quot;, &quot;Stn. 1&quot;, &quot;Stn. 3&quot;, &quot;Stn. 4&quot;, &quot;Stn. 5&quot;))
+
+#import decontamm&#39;ed, trimmed, and averaged AT/TT
+AT &lt;- read_csv(here(&quot;data&quot;, &quot;abundance_table.csv&quot;))
+clean_TT &lt;- read_csv(here(&quot;data&quot;, &quot;taxa_table.csv&quot;))
+
+qPCR_data &lt;- read_csv(here(&quot;data&quot;, &quot;qPCR.csv&quot;), col_types = cols(Well = col_skip(), 
+    `Target Name` = col_skip(), Task = col_skip(), 
+    Reporter = col_skip(), Quencher = col_skip(), 
+    Cт = col_double()), na = &quot;Undetermined&quot;) %&gt;% mutate(Quantity = ifelse(is.na(Quantity), 0, Quantity))
+
+combined_MD &lt;- Meta_Data %&gt;% group_by(sample_name_abridged) %&gt;% slice(1) %&gt;% select(-sample_name_long) %&gt;% mutate(isFieldSample = as.logical(ifelse(Location_Clean != &quot;Treatment Plant&quot;, &quot;TRUE&quot;, &quot;FALSE&quot;))) %&gt;% ungroup()</code></pre>
+<p><br /></p>
+</div>
+<div
+id="at-each-of-5-stations-the-following-chemical-metadata-were-measured-free-chlorine-concentration-specific-conductivity-water-temperature-dissolved-oxygen-and-ph.-the-results-were-visualized-with-the-following-boxplots."
+class="section level5">
+<h5>At each of 5 stations, the following chemical metadata were
+measured: free chlorine concentration, specific conductivity, water
+temperature, dissolved oxygen, and pH. The results were visualized with
+the following boxplots.</h5>
+<p><br /></p>
+<pre class="r"><code>#For analyte boxplots:
+for_analyte_boxplots &lt;- Meta_Data %&gt;% select(sample_name_abridged, Station_Num, Collection_Date, Sp_Cond_us_cm:pH, Chlorine_Free_mg_L, distance_from_plant_km) %&gt;%  
+  gather(analyte, value, -c(sample_name_abridged, Station_Num, Collection_Date, distance_from_plant_km)) %&gt;% mutate(Station_Num = fct_relevel(Station_Num, &quot;Post Filtration&quot;, &quot;Finished Water&quot;, &quot;5&quot;, &quot;4&quot;, &quot;3&quot;, &quot;1&quot;)) %&gt;% filter(!(Station_Num %in% c(&quot;Finished Water&quot;,
+                              &quot;Post Filtration&quot;, &quot;Post Chlorination&quot;)))
+
+chlorine_plot &lt;- for_analyte_boxplots %&gt;%
+ filter(analyte %in% &quot;Chlorine_Free_mg_L&quot;) %&gt;%
+ ggplot() +
+ aes(x = analyte, y = value, fill = Station_Num) +
+ geom_boxplot() +
+ scale_fill_brewer(palette = &quot;Paired&quot;, guide = guide_legend(reverse = TRUE)) +
+ labs(y = expression(paste(&quot;Free Chlorine (mg L&quot;^{-1}, &quot;)&quot;)), fill = &quot;Station #&quot;) +
+   theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y =element_blank()) +
+  coord_flip()
+
+conductivity_plot &lt;- for_analyte_boxplots %&gt;%
+  filter(analyte %in% &quot;Sp_Cond_us_cm&quot;) %&gt;%
+  filter(value &gt;= 300 &amp; value &lt;= 320) %&gt;%
+  ggplot() +
+  aes(x = analyte, y = value, fill = Station_Num) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = &quot;Paired&quot;, guide = guide_legend(reverse = TRUE)) +
+  labs(y = &quot;Specific Conductivity (\u00b5s/m\u00b2)&quot;, fill = &quot;Station #&quot;) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  coord_flip() 
+
+water_temp_plot &lt;- for_analyte_boxplots %&gt;%
+  filter(analyte %in% &quot;Water_Temp_C&quot;) %&gt;%
+  ggplot() +
+  aes(x = analyte, y = value, fill = Station_Num) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = &quot;Paired&quot;, guide = guide_legend(reverse = TRUE)) +
+  labs(y = &quot;Water Temp. (C)&quot;, fill = &quot;Station #&quot;) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  coord_flip() 
+
+dO_plot &lt;- for_analyte_boxplots %&gt;%
+  filter(analyte %in% &quot;DO_mg_L&quot;) %&gt;%
+  ggplot() +
+  aes(x = analyte, y = value, fill = Station_Num) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = &quot;Paired&quot;, guide = guide_legend(reverse = TRUE)) +
+  labs(y = expression(paste(&quot;Dissolved Oxygen (mg L&quot;^{-1}, &quot;)&quot;)), fill = &quot;Station #&quot;) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  coord_flip() 
+
+pH_plot &lt;- for_analyte_boxplots %&gt;%
+  filter(analyte %in% &quot;pH&quot;) %&gt;%
+  ggplot() +
+  aes(x = analyte, y = value, fill = Station_Num) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = &quot;Paired&quot;, guide = guide_legend(reverse = TRUE)) +
+  labs(y = &quot;pH&quot;, fill = &quot;Station #&quot;) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  coord_flip() 
+
+
+
+main &lt;- cowplot::plot_grid(chlorine_plot + theme(legend.position = &quot;none&quot;), 
+                          conductivity_plot + theme(legend.position = &quot;none&quot;),
+                          water_temp_plot + theme(legend.position = &quot;none&quot;),
+                          dO_plot + theme(legend.position = &quot;none&quot;),
+                          pH_plot + theme(legend.position = &quot;none&quot;))
+
+main &lt;- cowplot::plot_grid(main, cowplot::get_legend(chlorine_plot + theme(legend.box.margin = margin(0, 0, 0, 12))), ncol=2, rel_widths = c(2, .4))
+
+main</code></pre>
+<div class="figure" style="text-align: center">
+<img src="microbiology_files/figure-html/descriptive_water_quality-1.png" alt="Figure 1: Boxplots of sonde-measured water quality analytes." width="672" />
+<p class="caption">
+Figure 1: Boxplots of sonde-measured water quality analytes.
+</p>
+</div>
+<p><br /></p>
+</div>
+<div
+id="every-parameter-was-then-analyzed-by-sampling-date-and-sampling-location.-for-example-the-following-graph-shows-that-the-chlorine-residual-declined-on-average-0.01-ppm-from-one-station-to-the-next."
+class="section level5">
+<h5>Every parameter was then analyzed by sampling date and sampling
+location. For example, the following graph shows that the chlorine
+residual declined, on average 0.01 ppm from one station to the
+next.</h5>
+<p><br /></p>
+<pre class="r"><code>chlorine_scatter_plot &lt;- for_analyte_boxplots %&gt;%
+  filter(analyte %in% &quot;Chlorine_Free_mg_L&quot;) %&gt;%
+  ggplot() +
+  aes(x = distance_from_plant_km, y = value, label = Station_Num) +
+  geom_point(size = 2) +
+  labs(y = expression(paste(&quot;Free Chlorine (mg L&quot;^{-1}, &quot;)&quot;)), x = &quot;Distance From Plant (km)&quot;) +
+  scale_y_continuous(limits = c(0,.4), breaks = seq(0, .4,.1)) +
+  facet_wrap(facets = vars(Collection_Date), labeller = function(x) format(x, &#39;%m/%d/%Y&#39;))
+  
+chlorine_scatter_plot</code></pre>
+<div class="figure" style="text-align: center">
+<img src="microbiology_files/figure-html/free_chlorine-1.png" alt="Figure 2: Free chlorine measurements by sample date and distance from the treatment plant." width="672" />
+<p class="caption">
+Figure 2: Free chlorine measurements by sample date and distance from
+the treatment plant.
+</p>
+</div>
+<p><br /></p>
+</div>
+<div
+id="samples-take-on-100120-were-clearly-anamolous.-the-chlorine-residual-increased-distally-from-the-treatment-plant.-the-cause-was-later-determined-to-be-an-issue-in-the-treatment-plant-which-was-adding-too-much-chlorine-into-the-finished-water-the-night-prior-to-sampling."
+class="section level5">
+<h5>Samples take on 10/01/20 were clearly anamolous. The chlorine
+residual increased distally from the treatment plant. The cause was
+later determined to be an issue in the treatment plant, which was adding
+too much chlorine into the finished water the night prior to
+sampling.</h5>
+<p><br /></p>
+</div>
+<div
+id="next-the-concentration-of-microbial-cells-were-compared-across-sampling-stations.-the-lowest-concentration-occurred-in-the-finished-water-from-the-treatment-plant.-the-next-most-distal-stations-carried-significantly-more-cells.-evidently-the-water-increased-in-microbial-load-until-station-5-at-which-point-the-microbial-activity-declined."
+class="section level5">
+<h5>Next, the concentration of microbial cells were compared across
+sampling stations. The lowest concentration occurred in the finished
+water from the treatment plant. The next most distal stations carried
+significantly more cells. Evidently, the water increased in microbial
+load, until station 5, at which point the microbial activity
+declined.</h5>
+<p><br /></p>
+<pre class="r"><code>df_p_val &lt;- rstatix::t_test(Meta_Data, cell_concentration_cell_mL ~ Location_Clean, ref.group = &quot;Treatment Plant&quot;) %&gt;% 
+  rstatix::add_xy_position()
+
+
+n_fun &lt;- function(x){
+  return(data.frame(y = 1.05E5, label = paste0(&quot;n = &quot;,length(x))))
+}
+
+ggplot(Meta_Data, (aes(x = Location_Clean, y = cell_concentration_cell_mL))) +
+  stat_summary(fun = mean, geom = &quot;bar&quot;, color = &quot;black&quot;, fill = c(&#39;#a6cee3&#39;,&#39;#1f78b4&#39;,&#39;#b2df8a&#39;,&#39;#33a02c&#39;,&#39;#fb9a99&#39;)) + 
+  stat_summary(fun.data = mean_cl_boot, geom = &quot;errorbar&quot;, show.legend = FALSE, width = .5) +
+  labs(x = NULL) + scale_y_continuous(labels = scales::scientific) +
+  ylab(expression(paste(&quot;Cell Concentration (cell ml&quot;^{-1}, &quot;)&quot;))) + 
+  add_pvalue(df_p_val, 
+             label = &quot;p = {p.adj}&quot;,
+             remove.bracket = TRUE,
+             y.position = 1.0e5) +
+  stat_summary(fun.data = n_fun, geom = &quot;text&quot;)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="microbiology_files/figure-html/Figure5-1.png" alt="Figure 4: Mean cell concentrations measured at treatment plant and four stations. Error bars are the upper and lower Gaussian confidence limits based on the t-distribution. P-values from independent two-sample t-tests, adjusted using the Benjamini-Hochberg procedure, are displayed above the sample type in reference to the treatment plant." width="60%" />
+<p class="caption">
+Figure 4: Mean cell concentrations measured at treatment plant and four
+stations. Error bars are the upper and lower Gaussian confidence limits
+based on the t-distribution. P-values from independent two-sample
+t-tests, adjusted using the Benjamini-Hochberg procedure, are displayed
+above the sample type in reference to the treatment plant.
+</p>
+</div>
+<p><br /></p>
+</div>
+<div
+id="next-the-microbial-data-was-analyzed.-dna-was-extracted-and-sequenced-from-every-water-sample-to-determine-the-identity-and-relative-abundance-of-each-microbe."
+class="section level5">
+<h5>Next, the microbial data was analyzed. DNA was extracted and
+sequenced from every water sample to determine the identity and relative
+abundance of each microbe.</h5>
+<p><br /></p>
+<pre class="r"><code>#OK so first thing is to pull out the top ten phyla and just make that classic barchart... YAY!
+AT_matrix &lt;- AT %&gt;% column_to_rownames(&quot;sample_name_abridged&quot;) %&gt;% as.matrix(.)
+
+AT_phyla_glom_long &lt;- data.frame(t(AT_matrix), &quot;ASV_Name&quot; = rownames(t(AT_matrix))) %&gt;% select(ASV_Name, everything()) %&gt;%
+            pivot_longer(cols = starts_with(&quot;tap&quot;), values_to = &quot;Relative_Abundance&quot;, names_to = &quot;sample_name_abridged&quot;) %&gt;% left_join(clean_TT, by = &quot;ASV_Name&quot;) %&gt;%
+            group_by(sample_name_abridged, Phylum) %&gt;% summarise(RA_P_G = sum(Relative_Abundance), .groups = &quot;drop&quot;)
+
+#find top ten phyla
+top_ten_phylum &lt;- AT_phyla_glom_long %&gt;% ungroup() %&gt;% group_by(Phylum) %&gt;% summarise(total_RA_P_G = sum(RA_P_G), .groups = &quot;drop_last&quot;) %&gt;% arrange(-total_RA_P_G) %&gt;% slice(1:11) %&gt;% filter(!is.na(Phylum)) %&gt;% pull(Phylum)
+
+#label everything else &quot;other&quot;
+AT_phyla_glom_long_abridged &lt;- AT_phyla_glom_long %&gt;% mutate(Phylum_Abridged = ifelse(Phylum %in% top_ten_phylum, Phylum, &quot;Other&quot;)) %&gt;% group_by(sample_name_abridged, Phylum_Abridged) %&gt;% summarise(RA_P_G_A = sum(RA_P_G), .groups = &quot;drop_last&quot;) %&gt;% mutate(Phylum_Abridged = fct_relevel(Phylum_Abridged, &quot;Other&quot;, top_ten_phylum)) %&gt;% ungroup()
+
+#Need to set &quot;other&quot; as the last level in the categorical variable of Phylum
+ggplot(AT_phyla_glom_long_abridged, aes(x = sample_name_abridged, y = RA_P_G_A*100, fill = Phylum_Abridged)) + geom_col() + scale_fill_brewer(type = &quot;qual&quot;, palette = 3) + ylab(&quot;% Relative Abundance&quot;) + xlab(NULL) + theme(axis.text.x = element_blank()) + labs(fill = &quot;Phylum&quot;)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="microbiology_files/figure-html/Figure9-1.png" alt="Figure 5: Column chart showing the relative abundance of the top ten most abundant phyla in each sample." width="672" />
+<p class="caption">
+Figure 5: Column chart showing the relative abundance of the top ten
+most abundant phyla in each sample.
+</p>
+</div>
+<p><br /></p>
+</div>
+<div
+id="to-determine-if-the-community-composition-varied-significantly-between-stations-a-manova-test-was-performed.-the-result-of-the-manova-test-for-composition-difference-between-the-four-field-stations-was-not-significant-p-0.6-r-0.1-therefore-the-community-composition-does-not-vary-significantly-from-station-to-station.-the-result-of-the-manova-test-for-composition-difference-between-the-four-field-stations-and-the-treatment-plant-was-significant-p-0.02-r-0.05-therefore-the-community-within-the-treatment-plant-was-significantly-different-from-the-field-stations."
+class="section level5">
+<h5>To determine if the community composition varied significantly
+between stations, a MANOVA test was performed. The result of the MANOVA
+test for composition difference between the four field stations was not
+significant, (p = 0.6, R = 0.1); therefore, the community composition
+does not vary significantly from station to station. The result of the
+MANOVA test for composition difference between the four field stations
+and the treatment plant was significant, (p = 0.02, R = 0.05);
+therefore, the community within the treatment plant was significantly
+different from the field stations.</h5>
+<p><br /></p>
+</div>
+<div
+id="next-to-determine-if-the-microbial-diversity-varied-significantly-between-samples-several-measures-of-ecological-diversity-were-computed-for-each-sample.-the-shannon-diversity-measurements-were-then-compared-using-an-anova-test."
+class="section level5">
+<h5>Next, to determine if the microbial diversity varied significantly
+between samples, several measures of ecological diversity were computed
+for each sample. The Shannon diversity measurements were then compared
+using an ANOVA test.</h5>
+<p><br /></p>
+<pre class="r"><code>shannonDivDF &lt;- diversity(AT_matrix, index = &quot;shannon&quot;)
+simpsonDivDF &lt;- diversity(AT_matrix, index = &quot;simpson&quot;)
+InverseSimpsonDivDF &lt;- diversity(AT_matrix, index = &quot;invsimpson&quot;)
+
+
+diversityMeasures &lt;- data.frame(&quot;sample_name_abridged&quot; = names(shannonDivDF), &quot;shannonDiv&quot; = as.numeric(shannonDivDF), &quot;simpsonDiv&quot; = as.numeric(simpsonDivDF), &quot;inverseSimpsonDiv&quot; = as.numeric(InverseSimpsonDivDF)) %&gt;% left_join(Meta_Data, by = &quot;sample_name_abridged&quot;)
+
+diversityMeasures &lt;- diversityMeasures %&gt;% filter(Location!= &quot;Treatment Plant&quot;)
+
+n_fun &lt;- function(x){
+  return(data.frame(y = 4.5, label = paste0(&quot;n = &quot;,length(x))))
+}
+
+ANOVA_Shannon &lt;- aov(shannonDiv ~ Location, data = diversityMeasures)
+
+p_value_ANOVA_Shannon &lt;- round(summary(ANOVA_Shannon)[[1]][[5]][1], 2)
+f_value_ANOVA_Shannon &lt;- round(summary(ANOVA_Shannon)[[1]][[4]][1], 2)
+
+#diversity appears unchanged
+ggplot(diversityMeasures, aes(x = factor(Station_Num), y = shannonDiv)) + geom_boxplot(fill = c(&#39;#a6cee3&#39;,&#39;#1f78b4&#39;,&#39;#b2df8a&#39;,&#39;#33a02c&#39;)) + xlab(&quot;Station Number&quot;) + ylab(&quot;Shannon Div. Index&quot;) +
+  stat_summary(fun.data = n_fun, geom = &quot;text&quot;)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="microbiology_files/figure-html/Figure11-1.png" alt="Figure 6: Boxplots of the Shannon Diversity by station." width="672" />
+<p class="caption">
+Figure 6: Boxplots of the Shannon Diversity by station.
+</p>
+</div>
+<p><br /></p>
+</div>
+<div
+id="there-were-no-significant-differences-between-group-means-of-the-field-stations-as-determined-by-a-one-way-anova-f325-0.83-p-0.49."
+class="section level5">
+<h5>There were no significant differences between group-means of the
+field stations as determined by a one-way ANOVA (F(3,25) = 0.83, p =
+0.49).</h5>
+<p><br /></p>
+</div>
+<div
+id="next-the-relative-abundance-of-the-order-sphingomonadales-and-the-genii-nitrospira-mycobacterium-and-hyphomicrobium-were-plotted-against-the-distance-from-the-treatment-plant."
+class="section level5">
+<h5>Next, the relative abundance of the Order <em>Sphingomonadales</em>,
+and the genii, <em>Nitrospira</em>, <em>Mycobacterium</em>, and
+<em>Hyphomicrobium</em> were plotted against the distance from the
+treatment plant.</h5>
+<pre class="r"><code>combined_AT_matrix &lt;- AT %&gt;% column_to_rownames(&quot;sample_name_abridged&quot;) %&gt;% as.matrix(.)
+
+combined_AT_PR &lt;- data.frame(t(combined_AT_matrix), &quot;ASV_Name&quot; = rownames(t(combined_AT_matrix))) %&gt;% select(ASV_Name, everything()) %&gt;%
+            pivot_longer(cols = starts_with(&quot;tap&quot;), values_to = &quot;Relative_Abundance&quot;, names_to = &quot;sample_name_abridged&quot;) %&gt;% left_join(clean_TT, by = &quot;ASV_Name&quot;) %&gt;%
+  filter(Order == &quot;Sphingomonadales&quot; | Genus == &quot;Nitrospira&quot; | Genus == &quot;Mycobacterium&quot; | Genus == &quot;Hyphomicrobium&quot;) %&gt;%
+  mutate(Genus = ifelse(Order == &quot;Sphingomonadales&quot;, &quot;Sphingomonadales&quot;, Genus)) %&gt;% 
+            group_by(sample_name_abridged) %&gt;% summarise(RA_PR = sum(Relative_Abundance), .groups = &quot;drop&quot;) %&gt;% 
+            left_join(combined_MD, by = &quot;sample_name_abridged&quot;) %&gt;% filter(!is.na(RA_PR)) %&gt;% group_by(Collection_Date) %&gt;% mutate(count_date = n()) %&gt;% filter(count_date == 3 &amp; Collection_Date != &quot;2020-09-01&quot; &amp; Collection_Date != &quot;2020-12-08&quot;)
+
+
+ggplot(data = combined_AT_PR, aes(x = distance_from_plant_km, y = RA_PR*100)) + geom_point(size = 2) + scale_y_continuous(limits = c(0, 4), breaks = seq(0, 4, 1)) + ylab(&quot;Community Composition (%)&quot;) + xlab(&quot;Distance from Treatment Plant (km)&quot;) + facet_wrap(facets = vars(Collection_Date)) + geom_line()</code></pre>
+<p><img src="microbiology_files/figure-html/specPhyla-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div
+id="these-taxa-tended-to-increase-in-their-percent-relative-community-composition-as-a-funtion-of-distance-from-the-treatment-plant.-in-water-containing-oxidizable-nitrogen-nitrospira-start-to-multiply.-mycobacterium-can-form-biofilms-on-the-interior-surfaces-of-water-distribution-systems-and-as-disinfection-residuals-decline-mycobacterium-may-begin-to-increasingly-slough-from-the-biofilm."
+class="section level5">
+<h5>These taxa tended to increase in their percent relative community
+composition as a funtion of distance from the treatment plant. In water
+containing oxidizable nitrogen, Nitrospira start to multiply.
+Mycobacterium can form biofilms on the interior surfaces of water
+distribution systems, and as disinfection residuals decline,
+mycobacterium may begin to increasingly slough from the biofilm.</h5>
+<p><br /></p>
+</div>
+<div
+id="next-a-qpcr-assay-was-used-to-quantify-the-copy-numbers-of-the-16s-region-of-the-legionella-genome."
+class="section level5">
+<h5>Next, a qPCR assay was used to quantify the copy numbers of the 16S
+region of the <em>legionella</em> genome.</h5>
+<pre class="r"><code>qPCR_data_abridged &lt;- qPCR_data %&gt;% mutate(sample_name_abridged = str_sub(`Sample Name`, start = 1L, end = 5L))  %&gt;% select(sample_name_abridged, Quantity) %&gt;% filter(str_detect(sample_name_abridged, &quot;tap&quot;)) %&gt;% group_by(sample_name_abridged) %&gt;% arrange(-Quantity) %&gt;% slice(1)
+
+qPCR_data_abridged &lt;- qPCR_data_abridged %&gt;% left_join(combined_MD, by = &quot;sample_name_abridged&quot;) %&gt;% mutate(copies_per_L = Quantity * 4 / Volume_Filtered_L)
+
+ggplot(qPCR_data_abridged %&gt;% filter(distance_from_plant_km &gt; 0), aes(x = Station_Num, y = copies_per_L)) + geom_point() + ylab(&quot;Copies of Legionella per liter&quot;) + xlab(&quot;station number&quot;) + geom_segment(x = 0, y = 4, xend = 5, yend = 4, color = &quot;red&quot;) + geom_segment(x = 0, y = 60, xend = 5, yend = 60, color = &quot;blue&quot;)</code></pre>
+<p><img src="microbiology_files/figure-html/legInvestigation-1.png" width="672" style="display: block; margin: auto;" />
+ </p>
+</div>
+<div
+id="scatterplot-of-legionella-copies-per-liter-determined-by-qpcr-by-station-number.-the-red-line-indicates-the-detection-limit-and-the-blue-line-indicates-the-quantification-limit."
+class="section level5">
+<h5>Scatterplot of <em>legionella</em> copies per liter (determined by
+qPCR) by station number. The red line indicates the detection limit, and
+the blue line indicates the quantification limit.</h5>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
