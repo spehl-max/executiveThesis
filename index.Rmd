@@ -17,9 +17,9 @@ baseurl: "/executiveThesis"
 ---
 
 
-# Welcome to the executive summary of my Master's Thesis!
+# Executive Summary
 
-Below, you'll find links to different parts of the analysis.
+Below, you'll find links to different parts of the analysis, and a summary of my findings.
 
 ## Table of Contents
 
