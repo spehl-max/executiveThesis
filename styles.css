@@ -2,3 +2,7 @@
 .navbar-collapse.collapse {
   display: block !important;
 }
+
+.smaller-text {
+  font-size: 20%; /* Adjust the font size to your preference, e.g., 80% */
+}

@@ -3,21 +3,7 @@ name: "Executive Thesis"
 
 title: "Executive Thesis"
 
-navbar:
-  title: "Executive Thesis"
-  left:
-    - text: "Home"
-    - href: "index.html"
-    
-    - text: "Microbiology"
-      href: "microbiology.html"  
-      
-    - text: "Radiochemistry"
-      href: "radiochemistry.html"  
-      
-    - text: "Modeling"
-    - href: "modeling.html" 
-    
+
 output:
   html_document:
     theme: cosmo
@@ -28,8 +14,8 @@ output:
     css: styles.css
 
 baseurl: "/executiveThesis"  
-
 ---
+
 
 # Welcome to My Data Analysis Project!
 
@@ -37,10 +23,11 @@ This is the landing page for my data analysis project. Below, you'll find links 
 
 ## Table of Contents
 
+<div class="smaller-text">
 ## 1. [Microbiology](microbiology.html)
-`r # 2. [Radiochemistry](radiochemistry.html) `
-`r # 3. [Modeling](modeling.html) `
+</div>
 
+`r # 2. [Radiochemistry](radiochemistry.html)` `r # 3. [Modeling](modeling.html)`
 
 Feel free to explore each section and learn more about the analysis process.
 
@@ -54,4 +41,4 @@ Write a summary of the key findings or insights from the analysis.
 
 ## Contact
 
-If you have any questions or feedback, feel free to reach out to me at [your.email@example.com](mailto:your.email@example.com).
+If you have any questions or feedback, feel free to reach out to me at [your.email\@example.com](mailto:your.email@example.com).

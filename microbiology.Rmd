@@ -1,20 +1,6 @@
 ---
 title: "Microbiology"
 
-navbar:
-  title: "Executive Thesis"
-  left:
-    - text: "Home"
-    - href: "index.html"
-    
-    - text: "Microbiology"
-      href: "microbiology.html"  
-      
-    - text: "Radiochemistry"
-      href: "radiochemistry.html"  
-      
-    - text: "Modeling"
-    - href: "modeling.html" 
 
 output:
   html_document:
