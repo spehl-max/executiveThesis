@@ -27,7 +27,7 @@ Below, you'll find links to different parts of the analysis.
 ## 1. [Microbiology](microbiology.html)
 </div>
 
-# 2. [Radiochemistry](radiochemistry.html)` `r # 3. [Modeling](modeling.html)`
+`r # 2. [Radiochemistry](radiochemistry.html)` `r # 3. [Modeling](modeling.html)`
 
 Feel free to explore each section and learn more about the analysis process.
 
