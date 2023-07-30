@@ -1,0 +1,4 @@
+/* Override the Bootstrap class to prevent collapsing of the navbar */
+.navbar-collapse.collapse {
+  display: block !important;
+}
