@@ -16,9 +16,9 @@ The University of Wisconsin-Milwaukee, 2021\
 Under the Supervision of Professors James T. Waples, and Ryan J. Newton, PhDs
 :::
 
-::: hidden
+
 # Executive Summary
-:::
+
 
 Below, you'll find links to different parts of the analysis, and a summary of my findings.
 
