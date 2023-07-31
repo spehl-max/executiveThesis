@@ -11,3 +11,7 @@
 .indent {
   text-indent: 2em;
 }
+
+.title {
+  display: none;
+}
