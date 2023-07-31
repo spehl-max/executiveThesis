@@ -7,12 +7,11 @@
   font-size: 30px;
 }
 
-.navbar-h1 {
+.hidden {
   display: none;
 }
 
-.indent::first-line {
-  display: block;
-  padding-left: 40px; /* Adjust the value to control the indentation level */
-  text-indent: -40px; /* Adjust the value to counteract the padding on the first line */
+
+.indent {
+  text-indent: 2em;
 }
