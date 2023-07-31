@@ -6,7 +6,7 @@ output:
     theme: cosmo
     toc: yes
     toc_float: yes
-    toc_collapsed: no
+    toc_collapsed: yes
     css: styles.css
 baseurl: "/executiveThesis"  
 ---
