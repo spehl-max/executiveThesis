@@ -3,11 +3,16 @@
   display: block !important;
 }
 
-.smaller-text h2 {
-  font-size: 120%; /* Adjust the font size to your preference, e.g., 80% */
-}
-
 .fake-h2 {
   font-size: 30px;
 }
 
+.navbar-h1 {
+  display: none;
+}
+
+.indent::first-line {
+  display: block;
+  padding-left: 40px; /* Adjust the value to control the indentation level */
+  text-indent: -40px; /* Adjust the value to counteract the padding on the first line */
+}
