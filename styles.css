@@ -6,3 +6,8 @@
 .smaller-text h2 {
   font-size: 120%; /* Adjust the font size to your preference, e.g., 80% */
 }
+
+.fake-h2 {
+  font-size: 30px;
+}
+

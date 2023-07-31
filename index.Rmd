@@ -1,34 +1,41 @@
 ---
 name: "Executive Thesis"
-
 title: "WATER AGE, WATER CHEMISTRY, AND MICROBIAL POPULATIONS IN A DRINKING WATER DISTRIBUTION SYSTEM"
-
-
 output:
-  html_document:
+  html_document: 
     theme: cosmo
-    toc: true
-    toc_float: true
-    toc_collapsed: false
-    toc_depth: 2
+    toc: yes
+    toc_float: yes
+    toc_collapsed: no
     css: styles.css
-
 baseurl: "/executiveThesis"  
 ---
 
+::: fake-h2
+The University of Wisconsin-Milwaukee, 2021\
+Under the Supervision of Professors James T. Waples, and Ryan J. Newton, PhDs
+:::
 
-# Executive Summary
+# Executive Summary (#navbar-link)
+<div id="navbar-link"></div>
 
 Below, you'll find links to different parts of the analysis, and a summary of my findings.
 
-## Table of Contents
+## Introduction
 
-<div class="smaller-text">
-## 1. [Microbiology](microbiology.html)
-</div>
+&#9;Microbes in tap water play a crucial role in pipe corrosion, human health, and water aesthetics. Because instances of tap water borne illnesses are on the rise in the USA, and many water distribution systems are reaching the end of their design lifespan, research leading to a better understanding of microbial growth and colonization is being actively pursued by many labs (EPA 2002; Miller et al. 2012). In the past decade, several studies have tracked the microbial community change of entire water distribution systems using high throughput sequencing technology (Ma et al. 2020; Perrin et al. 2019). System-scale community microbiology data has shown clear seasonal trends in microbial drinking water taxa. This study utilized similar genomic methods to characterize the planktonic (free-floating) microbial community in the drinking water of the North Shore Water Commission distribution system, just north of Milwaukee, Wisconsin.\
+&#9;As treated water moves through a pipe system, residual microbes from the source water may multiply, or microbes may enter the flowing water from the biofilm covering the pipe wall (Rittman and Snoeyink 1984). American treatment plants seek to deactivate all microbes in the finished water; whereas, European systems focus on removing nutrients from the finished water, especially ammonia, manganese, and dissolved oxygen: As a result, microbes sloughing from the biofilm tend to regrow quicker in American systems, i.e., the water is more unstable, than microbial growth in European systems.\
+&#9;The overall effect of retention time, or water age, on microbial communities is not clearly understood in American or European systems. As disinfectant residuals decline, and exposure to pipe biofilms rises, microbial regrowth and microbial deposition are hypothesized to cause the total microbial load to rise (Wang et al. 2014). Furthermore, certain taxa such as Sphingomonas, Nitrospira, Mycobacterium, and Hyphomicrobium, have been shown to positively correlate to water age (Chan et al. 2019). However, because water age (retention time) is typically only inferred from spatial data, greater precision in water age measurements will help to characterize microbial community changes with age, and thus improve the understanding of engineering design that impact potential health risks. For example, by identifying regions of a distribution system with chronically high water age, engineers could schedule more frequent hydrant flushing to prevent biofilm formation.\
+&#9;Elucidating water age is a difficult task: Hydrologic models can be used to estimate water age; however, few drinking water systems have models, and those that exist are rarely calibrated with chemical tracers and are based on several untested assumptions (Waples et al. 2015). This study employed a newly designed protocol to measure water age using naturally-occurring radionuclides (Waples et al. 2015). These temporal data combined with 16S rRNA gene sequencing offer insights into microbial growth in a full-scale drinking water system.
 
-`r # 2. [Radiochemistry](radiochemistry.html)` 
-`r # 3. [Modeling](modeling.html)`
+## Data Analysis and Results
+
+Click on any of the links to see how each dataset was analyzed.
+
+### 1. [Microbiology](microbiology.html)
+
+
+`r # 2. [Radiochemistry](radiochemistry.html)` `r # 3. [Modeling](modeling.html)`
 
 Feel free to explore each section and learn more about the analysis process.
 
