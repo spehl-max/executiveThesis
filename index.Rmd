@@ -9,6 +9,7 @@ output:
     toc_collapsed: false
     toc_depth: 3
     self_contained: false
+    toc_sticky: false
     css: styles.css
 baseurl: "/executiveThesis"  
 ---
@@ -43,7 +44,7 @@ Elucidating water age is a difficult task: Hydrologic models can be used to esti
 
 Click on any of the links to see how each dataset was analyzed.
 
-### 1. [Microbiology](microbiology.html)
+### 1. [Water Chemistry and Microbiology](water-chemistry-and-microbiology.html)
 
 `r # 2. [Radiochemistry](radiochemistry.html)` `r # 3. [Modeling](modeling.html)`
 
