@@ -4,7 +4,7 @@ title: "Microbiology"
 
 output:
   html_document:
-    theme: cosmo
+    theme: united
     toc: true
     toc_float: true
     toc_collapsed: false
