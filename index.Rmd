@@ -4,9 +4,11 @@ title: "WATER AGE, WATER CHEMISTRY, AND MICROBIAL POPULATIONS IN A DRINKING WATE
 output:
   html_document: 
     theme: united
-    toc: yes
-    toc_float: yes
-    toc_collapsed: yes
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    toc_depth: 3
+    self_contained: false
     css: styles.css
 baseurl: "/executiveThesis"  
 ---
