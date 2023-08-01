@@ -26,12 +26,3 @@ h2 {
   font-size: 30px; /* You can adjust the size as per your preference */
   font-weight: bold;
 }
-
-/* styles.css */
-#lastSection {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: auto;
-  flex-grow: 1;
-}

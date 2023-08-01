@@ -54,11 +54,10 @@ Click on any of the links to see how each dataset was analyzed.
 
 Coming Soon!
 
-<section id="lastSection">
+
 
 ## Contact
 
 
 If you have any questions or feedback, feel free to reach out to me at [spehlmannm\@icloud.com](mailto:spehlmannm@icloud.com).
 
-</section>
