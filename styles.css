@@ -10,3 +10,15 @@
 .title {
   display: none;
 }
+
+h1 {
+  font-size: 30px; /* You can adjust the size as per your preference */
+  font-weight: bold;
+  font-style: italic;
+  color: #FF0000;
+}
+
+h2 {
+  font-size: 30px; /* You can adjust the size as per your preference */
+  font-weight: bold;
+}
