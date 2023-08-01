@@ -5,10 +5,10 @@ title: "Microbiology"
 output:
   html_document:
     theme: cosmo
-    toc: false
+    toc: true
     toc_float: true
     toc_collapsed: false
-    toc_depth: 2
+    toc_depth: 3
     self_contained: false
     css: styles.css
 ---
@@ -296,3 +296,5 @@ ggplot(qPCR_data_abridged %>% filter(distance_from_plant_km > 0), aes(x = Statio
 \  
 
 ##### Scatterplot of *legionella* copies per liter (determined by qPCR) by station number. The red line indicates the detection limit, and the blue line indicates the quantification limit.
+
+### [Return to Analysis Landing Page](index.html)

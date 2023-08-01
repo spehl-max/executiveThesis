@@ -3,7 +3,7 @@ name: "Executive Thesis"
 title: "WATER AGE, WATER CHEMISTRY, AND MICROBIAL POPULATIONS IN A DRINKING WATER DISTRIBUTION SYSTEM"
 output:
   html_document: 
-    theme: cosmo
+    theme: united
     toc: yes
     toc_float: yes
     toc_collapsed: yes
@@ -45,11 +45,6 @@ Click on any of the links to see how each dataset was analyzed.
 
 `r # 2. [Radiochemistry](radiochemistry.html)` `r # 3. [Modeling](modeling.html)`
 
-Feel free to explore each section and learn more about the analysis process.
-
-## About the Data
-
-Coming Soon!
 
 ## Conclusion
 
