@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Radiochemistry</title>
+
+<script src="radiochemistry_files/header-attrs-2.22/header-attrs.js"></script>
+<script src="radiochemistry_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="radiochemistry_files/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="radiochemistry_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="radiochemistry_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="radiochemistry_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="radiochemistry_files/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="radiochemistry_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="radiochemistry_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="radiochemistry_files/navigation-1.1/tabsets.js"></script>
+<link href="radiochemistry_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="radiochemistry_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Radiochemistry</h1>
+
+</div>
+
+
+<div id="radiochemistry" class="section level1">
+<h1>Radiochemistry</h1>
+<p>Because radioisotopes decay at a known rate, by comparing the
+activity of a radionuclide at one point in a distribution system to a
+point downstream, the travel time of water between the two locations may
+be calculated. Water containing both <sup>90</sup>Y and <sup>90</sup>Sr
+enters the treatment plant from Lake Michigan. During the coagulation
+step of the treatment process, all the particle-bound <sup>90</sup>Y was
+assumed, and later confirmed to be removed from the flowing water,
+leaving only its parent, <sup>90</sup>Sr. As <sup>90</sup>Sr flows
+through the pipes, it decays into <sup>90</sup>Y at a rate determined by
+its half-life. Therefore, by measuring the activity of <sup>90</sup>Y in
+a sample of drinking water, the water age can be calculated using the
+half-life of <sup>90</sup>Y.</p>
+<p>Below, an example decay graph is shown. <sup>90</sup>Y is clearly
+decaying exponentially, occurring to its half-life, 64.1 hrs.</p>
+<pre class="r"><code>base_sheet_cleaned %&gt;% filter(sample_name == &quot;tap30&quot;) %&gt;% ggplot() +
+  aes(x = decay_function, y = cpm) + geom_point() +
+      geom_smooth(method=&quot;lm&quot;, formula = y ~ x, se=FALSE) +
+  stat_smooth_func(geom=&quot;text&quot;,method=&quot;lm&quot;,vjust=-1, hjust = .05,parse=TRUE) +
+  ylab(&quot;beta decay (dpm)&quot;) +
+  xlab(expression(paste({e^{-lambda}[{&quot;90&quot;}[Y]]}^t))) +
+  scale_y_continuous(limits = c(0,4), breaks = seq(0,4,.8))</code></pre>
+<div class="figure" style="text-align: center">
+<img src="radiochemistry_files/figure-html/figure8-1.png" alt="Figure 8: Beta decay of tap30 plotted by the ^90^Y decay function. A simple linear regression equation is shown on the chart." width="672" />
+<p class="caption">
+Figure 8: Beta decay of tap30 plotted by the <sup>90</sup>Y decay
+function. A simple linear regression equation is shown on the chart.
+</p>
+</div>
+<p>Unfortunately, after comparing the <sup>90</sup>Y activities across
+all of the stations, it became apparent that an endogenous source of
+<sup>90</sup>Sr was producing <sup>90</sup>Y somewhere immediately
+downstream of the treatment plant; possible in the water tower where the
+<sup>90</sup>Sr may have sorbed to the pipe wall after bonding with
+loose carbonate ions. </p>
+<pre class="r"><code>range_x &lt;- round(max(Meta_Data$distance_from_plant_km))
+
+mean_sr_90_dpm_L &lt;- age_and_activity %&gt;% filter(sample_name %in% ten_jug_sample_list) %&gt;% filter(!(sample_name %in% c(&quot;tap7&quot;, &quot;tap8&quot;, &quot;tap9&quot;))) %&gt;% 
+.[[&quot;Sr_90_dpm_L&quot;]] %&gt;% as.numeric(.) %&gt;% .[!is.na(.)] %&gt;% mean(.) %&gt;% round(., 2)
+
+std_dev_sr_90_dpm_L &lt;- age_and_activity %&gt;% filter(sample_name %in% ten_jug_sample_list) %&gt;% filter(!(sample_name %in% c(&quot;tap7&quot;, &quot;tap8&quot;, &quot;tap9&quot;))) %&gt;% .[[&quot;Sr_90_dpm_L&quot;]] %&gt;% as.numeric(.) %&gt;% .[!is.na(.)] %&gt;% sd(.) %&gt;% round(., 3)
+
+
+age_and_activity %&gt;% right_join(Meta_Data, by = c(&quot;sample_name&quot; = &quot;sample_name_abridged&quot;)) %&gt;% filter(sample_name != &quot;tap35&quot; &amp; !is.na(Y_90_dpm_L)) %&gt;% ggplot() + aes(x = distance_from_plant_km, y = Y_90_dpm_L) + geom_point(size = .5) + ylab(bquote(&#39;&#39;*~&quot;&quot;^90 ~&#39;Y activity (dpm&#39;~L^-1~&#39;)&#39;*&#39;&#39;)) +xlab(&quot;distance from treatment plant (km)&quot;) +
+  geom_errorbar(aes(ymin=Y_90_dpm_L-Y_90_error, ymax=Y_90_dpm_L+Y_90_error, width = .01)) +
+  geom_segment(inherit.aes = TRUE, aes(x = 0, y = mean_sr_90_dpm_L, xend = range_x, yend = mean_sr_90_dpm_L), color = &quot;red&quot;, size = .1) +
+  annotate(&quot;rect&quot;, xmin = 0, xmax = range_x, ymin = mean_sr_90_dpm_L - std_dev_sr_90_dpm_L, ymax = mean_sr_90_dpm_L + std_dev_sr_90_dpm_L, alpha = .2,fill = &quot;red&quot;)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="radiochemistry_files/figure-html/figure9-1.png" alt="Figure 12: Scatter plot of ^90^Y activity against distance from plant on each sampling date. The red line indicates the mean ^90^Sr activity in Lake Michigan as determined by the incubation experiment, the red rectangle bounds the standard error of the mean" width="672" />
+<p class="caption">
+Figure 12: Scatter plot of <sup>90</sup>Y activity against distance from
+plant on each sampling date. The red line indicates the mean
+<sup>90</sup>Sr activity in Lake Michigan as determined by the
+incubation experiment, the red rectangle bounds the standard error of
+the mean
+</p>
+</div>
+<p> <br />
+At the first station, <sup>90</sup>Y activities greater than the mean
+<sup>90</sup>Sr activity were measured on three separate occasions,
+which, under the assumption that the activity of <sup>90</sup>Sr is
+uniform throughout both Lake Michigan and the pipe system, is
+impossible.</p>
+<pre class="r"><code>activty_all &lt;- age_and_activity %&gt;% right_join(Meta_Data, by = c(&quot;sample_name&quot; = &quot;sample_name_abridged&quot;)) %&gt;% filter(Station_Num %in% c(&quot;1&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;) &amp; !is.na(Y_90_dpm_L)) %&gt;% ggplot() + aes(x = Collection_Date, y = Y_90_dpm_L) + geom_point(size = .5) + ylab(bquote(&#39;&#39;*~&quot;&quot;^90 ~&#39;Y activity (dpm&#39;~L^-1~&#39;)&#39;*&#39;&#39;)) +xlab(&quot;collection date&quot;) +
+  geom_errorbar(aes(ymin=Y_90_dpm_L-Y_90_error, ymax=Y_90_dpm_L+Y_90_error, width = .01)) + geom_line(aes(group = Station_Num, color = Station_Num)) +  labs(col=&quot;Station Number&quot;) +  scale_color_manual(values=c(&quot;#1b9e77&quot;, &quot;#d95f02&quot;, &quot;#7570b3&quot;, &quot;#e7298a&quot;))
+
+activity_4_5 &lt;- age_and_activity %&gt;% right_join(Meta_Data, by = c(&quot;sample_name&quot; = &quot;sample_name_abridged&quot;))  %&gt;% filter(Station_Num %in% c(&quot;4&quot;, &quot;5&quot;) &amp; !is.na(Y_90_dpm_L)) %&gt;% ggplot() + aes(x = Collection_Date, y = Y_90_dpm_L) + geom_point(size = .5) + ylab(bquote(&#39;&#39;*~&quot;&quot;^90 ~&#39;Y activity (dpm&#39;~L^-1~&#39;)&#39;*&#39;&#39;)) +xlab(&quot;collection date&quot;) +
+  geom_errorbar(aes(ymin=Y_90_dpm_L-Y_90_error, ymax=Y_90_dpm_L+Y_90_error, width = .01)) + geom_line(aes(group = Station_Num, color = Station_Num)) +  labs(col=&quot;Station Number&quot;) + scale_color_manual(values=c(&quot;#7570b3&quot;, &quot;#e7298a&quot;))
+
+side_by_side_plot &lt;- plot_grid(activty_all, activity_4_5, labels = c(&#39;A&#39;, &#39;B&#39;)) 
+
+side_by_side_plot</code></pre>
+<div class="figure" style="text-align: center">
+<img src="radiochemistry_files/figure-html/figure10-1.png" alt="Figure 10: Scatter plot of ^90^Y activity plus or minus its propagated error plotted by date with each station delineated.^90^Y activity is positively related to distance from the treatment plant only between stations four and five." width="672" />
+<p class="caption">
+Figure 10: Scatter plot of <sup>90</sup>Y activity plus or minus its
+propagated error plotted by date with each station
+delineated.<sup>90</sup>Y activity is positively related to distance
+from the treatment plant only between stations four and five.
+</p>
+</div>
+<p>Fortunately, the influence of the endogenously produced
+<sup>90</sup>Y on the measured activity dissipated at the most distal
+stations, four and five. Therefore, water age calculations were only
+meaningful for samples collected at these two stations. </p>
+<pre class="r"><code>water_age_plot_df &lt;- Meta_Data %&gt;% select(sample_name_abridged, Station_Num, Collection_Date) %&gt;% left_join(age_and_activity, by = c(&quot;sample_name_abridged&quot; = &quot;sample_name&quot;)) %&gt;% filter(Station_Num %in% c(&quot;4&quot;, &quot;5&quot;)) %&gt;% mutate(Station_Num = fct_relevel(Station_Num, &quot;4&quot;, &quot;5&quot;)) %&gt;% filter(!is.na(water_age_hrs))
+
+
+water_age_plot_df %&gt;%
+  ggplot() +
+  aes(x = Collection_Date, y = water_age_hrs) +
+  geom_point(size = 1) +
+  labs(y = &quot;water age (hours)&quot;, x = &quot;collection date&quot;) +
+  geom_errorbar(aes(ymin=water_age_hrs-10.131, ymax=water_age_hrs+10.131, width = .01)) +
+  geom_line(aes(color = Station_Num)) +
+  scale_color_manual(values=c(&quot;#7570b3&quot;, &quot;#e7298a&quot;)) +
+  labs(color = &quot;station number&quot;)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="radiochemistry_files/figure-html/figure11-1.png" alt="Figure 11: ^90^Y derived water ages $\pm$ the $\delta$est shown by stations four and five." width="672" />
+<p class="caption">
+Figure 11: <sup>90</sup>Y derived water ages <span
+class="math inline">\(\pm\)</span> the <span
+class="math inline">\(\delta\)</span>est shown by stations four and
+five.
+</p>
+</div>
+<pre class="r"><code>sd_4_5 &lt;- water_age_plot_df %&gt;% group_by(Station_Num, Collection_Date, water_age_hrs) %&gt;% slice(1) %&gt;% pivot_wider(names_from = Station_Num, values_from = water_age_hrs) %&gt;% mutate(difference = `5` - `4`) %&gt;% filter(!is.na(difference)) %&gt;% pull(difference) %&gt;% as.numeric(.) %&gt;% sd(.)
+
+mean_4_5 &lt;- water_age_plot_df %&gt;% group_by(Station_Num, Collection_Date, water_age_hrs) %&gt;% slice(1) %&gt;% pivot_wider(names_from = Station_Num, values_from = water_age_hrs) %&gt;% mutate(difference = `5` - `4`) %&gt;% filter(!is.na(difference)) %&gt;% pull(difference) %&gt;% as.numeric(.) %&gt;% mean(.)</code></pre>
+<p>The water age at station 4 was 48.21 ± 25.30 hours (n = 6, ± 1 SD)
+and the water age at station 5 was 76.74 ± 14.21 hours (n = 5, ±1 SD).
+As hypothesized, the water age increased distally from the plant. Water
+age also increased seasonally, suggesting decreasing water usage during
+the cooler months; most likely because of a reduction in sprinkler
+usage.</p>
+<p><br> <br></p>
+<div id="return-to-analysis-landing-page" class="section level2">
+<h2><a href="index.html">Return to Analysis Landing Page</a></h2>
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

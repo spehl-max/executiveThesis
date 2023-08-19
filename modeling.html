@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Modeling</title>
+
+<script src="modeling_files/header-attrs-2.22/header-attrs.js"></script>
+<script src="modeling_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="modeling_files/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="modeling_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="modeling_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="modeling_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="modeling_files/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="modeling_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="modeling_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="modeling_files/navigation-1.1/tabsets.js"></script>
+<link href="modeling_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="modeling_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Modeling</h1>
+
+</div>
+
+
+<div id="modeling" class="section level1">
+<h1>Modeling</h1>
+<p>Computation for the NMDS analyses was conducted in R, using the vegan
+package and the function, metaMDS therein (RB et al. 2013). The distance
+matrices were computed using the bray function, and the modelling engine
+was set to monoMDS. After creating the model, the function envfit was
+called to model dissolved oxygen, water temperature, and free chlorine
+as a function of community relatedness. The results from the envfit
+model were then displayed on the two dimensional NMDS ordination space
+as arrows pointing in the direction of strongest correlation.</p>
+<pre class="r"><code>set.seed(123)
+
+mMDS &lt;- metaMDS(Abundance_Table,distance = &quot;bray&quot;, 
+                k=10, engine = c(&quot;monoMDS&quot;),trymax = 100, 
+                autotransform = F, display = &quot;sample&quot;)
+
+sample_DF &lt;- tibble(mMDS$points[,1], mMDS$points[,2], row.names(mMDS$points))
+species_DF &lt;- tibble(mMDS$species[,1], mMDS$species[,2], row.names(mMDS$species))
+
+colnames(sample_DF) &lt;- c(&quot;NMDS1&quot;, &quot;NMDS2&quot;, &quot;sample_name_abridged&quot;)
+colnames(species_DF) &lt;- c(&quot;NMDS1&quot;, &quot;NMDS2&quot;, &quot;ASV_NUM&quot;)
+
+sample_DF &lt;- sample_DF %&gt;% left_join(Meta_Data, by = &quot;sample_name_abridged&quot;)
+
+lab_dates &lt;- pretty(sample_DF$Collection_Date)
+
+ef &lt;- envfit(mMDS ~ DO_mg_L + Water_Temp_C + Chlorine_Free_mg_L + pH, Meta_Data, na.rm = TRUE)
+
+dO_segment &lt;- data.frame(&quot;ArrowXStart&quot; = 0, &quot;ArrowYStart&quot; = 0, &quot;ArrowXEnd&quot; = ef$vectors$arrows[1,1], &quot;ArrowYEnd&quot; = ef$vectors$arrows[1,2])
+water_temp_segment &lt;- data.frame(&quot;ArrowXStart&quot; = 0, &quot;ArrowYStart&quot; = 0, &quot;ArrowXEnd&quot; = ef$vectors$arrows[2,1], &quot;ArrowYEnd&quot; = ef$vectors$arrows[2,2])
+chl_segment &lt;- data.frame(&quot;ArrowXStart&quot; = 0, &quot;ArrowYStart&quot; = 0, &quot;ArrowXEnd&quot; = ef$vectors$arrows[3,1], &quot;ArrowYEnd&quot; = ef$vectors$arrows[3,2])
+pH_segment &lt;- data.frame(&quot;ArrowXStart&quot; = 0, &quot;ArrowYStart&quot; = 0, &quot;ArrowXEnd&quot; = ef$vectors$arrows[4,1], &quot;ArrowYEnd&quot; = ef$vectors$arrows[4,2])
+
+sample_plot &lt;- sample_DF %&gt;% ggplot() +
+  aes(x = NMDS1, y = NMDS2, label = Station_Num, color = as.numeric(Collection_Date)) +
+  geom_text(size = 4) +
+  geom_segment(inherit.aes = FALSE, aes(x = ArrowXStart, y = ArrowYStart, xend = ArrowXEnd, yend = ArrowYEnd), data = dO_segment,
+               linewidth = .3, arrow = arrow(length = unit(0.3, &quot;inches&quot;))) +
+  geom_segment(inherit.aes = FALSE, aes(x = ArrowXStart, y = ArrowYStart, xend = ArrowXEnd, yend = ArrowYEnd), data = water_temp_segment,
+               linewidth = .3, arrow = arrow(length = unit(0.3, &quot;inches&quot;))) +
+  geom_segment(inherit.aes = FALSE, aes(x = ArrowXStart, y = ArrowYStart, xend = ArrowXEnd, yend = ArrowYEnd), data = chl_segment,
+               linewidth = .3, arrow = arrow(length = unit(0.3, &quot;inches&quot;))) +
+  geom_segment(inherit.aes = FALSE, aes(x = ArrowXStart, y = ArrowYStart, xend = ArrowXEnd, yend = ArrowYEnd), data = pH_segment,
+               linewidth = .3, arrow = arrow(length = unit(0.3, &quot;inches&quot;))) +
+  scale_colour_viridis_c(breaks = as.numeric(lab_dates), 
+                         labels = c(&quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;, &quot;Jan&quot;),
+                         guide = guide_colorbar(reverse = TRUE),
+                         direction = -1,
+                         option = &quot;D&quot;) +
+              labs(color = &quot;Collection Date&quot;) 
+
+
+range_x &lt;- abs(ggplot_build(sample_plot)$layout$panel_scales_x[[1]]$range$range[1] - ggplot_build(sample_plot)$layout$panel_scales_x[[1]]$range$range[2])
+range_y &lt;- abs(ggplot_build(sample_plot)$layout$panel_scales_y[[1]]$range$range[1] - ggplot_build(sample_plot)$layout$panel_scales_y[[1]]$range$range[2])
+
+sample_plot &lt;- sample_plot +
+  annotate(&quot;text&quot;, x = ef$vectors$arrows[1,1] - .02 * range_x, y = ef$vectors$arrows[1,2], label = &quot;A&quot;, size = 4) +
+  annotate(&quot;text&quot;, x = ef$vectors$arrows[2,1] + .03 * range_x, y = ef$vectors$arrows[2,2] + .01 * range_y, label = &quot;B&quot;, size = 4) +
+  annotate(&quot;text&quot;, x = ef$vectors$arrows[3,1] + .03 * range_x, y = ef$vectors$arrows[3,2] + .02 * range_y, label = &quot;C&quot;, size = 4) +
+  annotate(&quot;text&quot;, x = ef$vectors$arrows[4,1] - .03 * range_x, y = ef$vectors$arrows[4,2] - .01 * range_y, label = &quot;D&quot;, size = 4)
+
+sample_plot</code></pre>
+<div class="figure" style="text-align: center">
+<img src="modeling_files/figure-html/figure12-1.png" alt="Figure 12: NMDS results of all samples labelled by station number, color-coded by sample collection date. The environmental fitting function results are displayed as arrows originating at the origin and pointing towards the direction of strongest correlation to sample separation. Arrows A is DO, B is water temperature, C is free chlorine, and D is pH." width="672" />
+<p class="caption">
+Figure 12: NMDS results of all samples labelled by station number,
+color-coded by sample collection date. The environmental fitting
+function results are displayed as arrows originating at the origin and
+pointing towards the direction of strongest correlation to sample
+separation. Arrows A is DO, B is water temperature, C is free chlorine,
+and D is pH.
+</p>
+</div>
+<p>The samples cluster into three groups, an early season group, a late
+season group, and a group found in the treatment plant. The influence of
+DO, water temperature, and free chlorine on sample separation were all
+significant (p &lt; 0.05). Water temperature and DO tended to have
+the opposite effect on community differences: as temperature and DO are
+inversely related. Higher pH tended to pull the samples into the early
+season group, suggesting that pH is an important seasonal
+parameter.<br />
+<br />
+</p>
+<p>A second NMDS was run on the subset of samples with resolved water
+age measurements (n = 11). The water age was only resolved for stations
+4 &amp; 5 because of high 90Y readings measured at stations 1 &amp; 3,
+which indicated the influence of a reservoir of 90Y with an
+unknown, potentially variable activity. On the NMDS, the starting number
+of dimensions was set to, k = 3, and the stress of the resulting model
+was 0.078, indicating that the model fit the data moderately strong.</p>
+<pre class="r"><code>samples_with_age &lt;- Meta_Data %&gt;% filter(!is.na(water_age_hrs)) %&gt;% pull(sample_name_abridged)
+
+#OK - let&#39;s group them like this:
+grouping &lt;- data.frame(sample_name_abridged = samples_with_age, 
+                       water_age_factor = as.factor(c(&quot;moderate&quot;, &quot;moderate&quot;, &quot;young&quot;, &quot;old&quot;, 
+                                                      &quot;moderate&quot;, &quot;old&quot;, &quot;young&quot;, &quot;moderate&quot;, 
+                                                      &quot;young&quot;, &quot;old&quot;, &quot;young&quot;)))
+
+water_age_MD &lt;- Meta_Data %&gt;% right_join(grouping, by = &quot;sample_name_abridged&quot;) %&gt;%
+  mutate(water_age_factor = fct_relevel(water_age_factor, &quot;young&quot;, &quot;moderate&quot;, &quot;old&quot;))
+
+
+
+mMDS &lt;- metaMDS(Abundance_Table[which(row.names(Abundance_Table) %in% samples_with_age), ],distance = &quot;bray&quot;, 
+                k=3, engine = c(&quot;monoMDS&quot;),trymax = 100, 
+                autotransform = F, display = &quot;sample&quot;)
+
+sample_DF &lt;- tibble(mMDS$points[,1], mMDS$points[,2], row.names(mMDS$points))
+species_DF &lt;- tibble(mMDS$species[,1], mMDS$species[,2], row.names(mMDS$species))
+
+colnames(sample_DF) &lt;- c(&quot;NMDS1&quot;, &quot;NMDS2&quot;, &quot;sample_name_abridged&quot;)
+colnames(species_DF) &lt;- c(&quot;NMDS1&quot;, &quot;NMDS2&quot;, &quot;ASV_NUM&quot;)
+
+sample_DF &lt;- sample_DF %&gt;% left_join(water_age_MD, by = &quot;sample_name_abridged&quot;)
+
+
+sample_plot &lt;- sample_DF %&gt;% ggplot() +
+  aes(x = NMDS1, y = NMDS2, label = water_age_factor, color = water_age_hrs) +
+  geom_text(size = 4, fontface = &quot;bold&quot;) +
+  labs(color = &quot;water age (hrs)&quot;) +
+  scale_colour_viridis_c( guide = guide_colorbar(reverse = TRUE),
+                          direction = 1,
+                          option = &quot;H&quot;) +
+  scale_x_continuous(limits = c(-0.6, 0.5))
+
+sample_plot</code></pre>
+<div class="figure" style="text-align: center">
+<img src="modeling_files/figure-html/figure13-1.png" alt="Figure 13 : NMDS results of all samples labelled by water age classification, color-coded by radionuclide-derived water age." width="672" />
+<p class="caption">
+Figure 13 : NMDS results of all samples labelled by water age
+classification, color-coded by radionuclide-derived water age.
+</p>
+</div>
+<p>The water age does not appear to be a driver of community change in
+the range of water ages sampled (25 – 97 hours). Previous studies have
+shown that alpha diversity of microbial communities does not change
+significantly until sampling points are separated by long
+distances (&gt; 46 km); hence, it is possible that only water ages
+higher than those studied significantly influence microbial community
+composition (A. Pinto et al. 2014). As shown in chapter 2, most of the
+microbial community in any one sample was common to other samples;
+therefore, any changes that did occur in the microbial communities may
+simply be indicative of stochastic processes such as biofilm
+sloughing.</p>
+<p><br> <br></p>
+<div id="return-to-analysis-landing-page" class="section level2">
+<h2><a href="index.html">Return to Analysis Landing Page</a></h2>
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

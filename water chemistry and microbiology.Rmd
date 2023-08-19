@@ -13,6 +13,7 @@ output:
     self_contained: false
     css: styles.css
 ---
+
 # Water Chemistry and Microbiology
 
 ## Water Chemistry:
@@ -38,8 +39,8 @@ Meta_Data <- read_csv(here("data", "meta_data.csv"),
                mutate(distance_from_plant_km = round(miles_from_plant*1.61,2)) %>% mutate(Location_Clean = fct_relevel(Location_Clean, "Treatment Plant", "Stn. 1", "Stn. 3", "Stn. 4", "Stn. 5"))
 
 #import decontamm'ed, trimmed, and averaged AT/TT
-AT <- read_csv(here("data", "abundance_table.csv"))
-clean_TT <- read_csv(here("data", "taxa_table.csv"))
+AT <- read_csv(here("data", "AT.csv"))
+clean_TT <- read_csv(here("data", "TT.csv"))
 
 qPCR_data <- read_csv(here("data", "qPCR.csv"), col_types = cols(Well = col_skip(), 
     `Target Name` = col_skip(), Task = col_skip(), 
@@ -242,6 +243,8 @@ combined_AT_PR <- data.frame(t(combined_AT_matrix), "ASV_Name" = rownames(t(comb
 ggplot(data = combined_AT_PR, aes(x = distance_from_plant_km, y = RA_PR*100)) + geom_point(size = 2) + scale_y_continuous(limits = c(0, 4), breaks = seq(0, 4, 1)) + ylab("Community Composition (%)") + xlab("Distance from Treatment Plant (km)") + facet_wrap(facets = vars(Collection_Date)) + geom_line()
 ```
 
+There is some indication that the relative abundance of these taxa is related to the distance from the treatment plant. These taxa are often associated with older water, and biofilm communities, so the results are expected.\  
+
 Next, a qPCR assay was used to quantify the copy numbers of the 16S region of the *legionella* genome. On the y axis, *legionella* copies per liter (determined by qPCR) are shown against the station number on the x axis. The red line indicates the detection limit, and the blue line indicates the quantification limit.\
 
 ```{r Figure7, fig.cap="Figure 7: _Legionella_ concentration against station number."}
@@ -253,4 +256,10 @@ ggplot(qPCR_data_abridged %>% filter(distance_from_plant_km > 0), aes(x = Statio
 
 ```
 
+No precise correlation between distance from the treatment plant and _Legionella_ concentration\ was deduced. _Legionella_ often revert to a dormant state in the biofilms and their concentrations\ can vary significantly in flowing water due to slight fluctuations in key nutrients. _Legionella_ are also common endosymbionts within amoeba, and they may only emerge\ from their host under specific conditions.\ Overall, stochastic processes seem to exert the most influence over microbial growth in flowing drinking water over the distances studied.\  
+
+<br>
+<br>
+
 ## [Return to Analysis Landing Page](index.html)
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

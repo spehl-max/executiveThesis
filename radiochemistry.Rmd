@@ -1,0 +1,163 @@
+---
+title: "Radiochemistry"
+
+
+output:
+  html_document:
+    theme: united
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    toc_depth: 2
+    toc_sticky: false
+    self_contained: false
+    css: styles.css
+---
+
+# Radiochemistry
+
+
+```{r setup, include=FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align = 'center')
+
+library("pander")
+library("broom")
+library("lubridate")
+library("graphics")
+library("tidyverse")
+library("tidymodels")
+library("lubridate")
+library("cowplot")
+library("here")
+library("kableExtra")
+
+evalsOptions('graph.unify', TRUE)
+
+source(here("aux_functions","r2 value function.R"))
+source(here("aux_functions","ytrium.decay.function.mins.R"))
+source(here("aux_functions","lead.ytrium.decay.function.days.R"))
+source(here("aux_functions","remove_errant_reads_linear.R"))
+source(here("aux_functions","remove_errant_reads_exponential.R"))
+source(here("aux_functions","ytrium.decay.function.days.R"))
+source(here("aux_functions","single_param_model_results.R"))
+source(here("aux_functions","double_param_model_results.R"))
+source(here("aux_functions", "data_wrangler.R"))
+source(here("aux_functions", "thorium.decay.function.mins.R"))
+
+#Set a ggplot theme
+theme_set(theme_minimal())
+```
+
+
+```{r, include = FALSE}
+
+ten_jug_sample_list <- c("tap1", "tap2", "tap3", "tap4",
+                       "tap5", "tap6", "tap8", "tap7",
+                       "tap9")
+
+five_sequence <- c("tap44", "tap45", "tap46", "tap47", "tap48")
+
+field_sample_list <- c("tap13", "tap11", "tap14", "tap15",
+                       "tap18", "tap19", 
+                       "tap20", "tap21", "tap22", "tap23",
+                       "tap23", "tap24", "tap25", "tap26",
+                       "tap27", "tap28", "tap30",
+                       "tap31", "tap32", "tap33", "tap34",
+                       "tap35", "tap36", "tap37", "tap49", "tap50", "tap51", "tap52", "tap53", "tap54")
+
+#max check name of Meta_Data
+Meta_Data <- read_csv(here("data", "meta_data.csv"),
+                      col_types = cols(Collection_Date = col_date(format = "%m/%d/%y"), date_time_filtering = col_datetime(format = "%m/%d/%y %H:%M"), 
+                                      date_time_sampling = col_datetime(format = "%m/%d/%y %H:%M"),                                       date_time_yield_monitor_added = col_datetime(format = "%m/%d/%y %H:%M"))) %>% mutate(Station_Num = fct_relevel(Station_Num, "Post Filtration", "Post Chlorination", "Finished Water", "1", "3", "4", "5")) %>%
+               mutate(distance_from_plant_km = round(miles_from_plant*1.61,2)) %>% mutate(Location_Clean = fct_relevel(Location_Clean, "Treatment Plant", "Stn. 1", "Stn. 3", "Stn. 4", "Stn. 5"))
+
+raw_input <- read_csv(here("data", "beta counts 8-10-20 raw.csv")) 
+
+base_sheet_cleaned <- read_csv(here("data", "cleaned_beta_counts.csv"))
+
+tap_44 <- read_csv(here("data", "tap_44.csv")) 
+
+all_models <- read_csv(here("data", "all_models.csv"))
+
+age_and_activity <- read_csv(here("data", "age_and_activity.csv"))
+```
+
+Because radioisotopes decay at a known rate, by comparing the activity of a radionuclide\ at one point in a distribution system to a point downstream, the travel time of water between the\ two locations may be calculated. Water containing both ^90^Y and ^90^Sr enters the treatment plant\ from Lake Michigan. During the coagulation step of the treatment process, all the particle-bound\ ^90^Y was assumed, and later confirmed to be removed from the\ flowing water, leaving only its parent, ^90^Sr. As ^90^Sr flows through the pipes, it decays into ^90^Y at a\ rate determined by its half-life. Therefore, by measuring the activity of ^90^Y in a sample of drinking water, the water age can be calculated using the half-life of ^90^Y.
+
+Below, an example decay graph is shown. ^90^Y is clearly decaying exponentially, occurring to its half-life, 64.1 hrs.
+
+```{r figure8, fig.cap="Figure 8: Beta decay of tap30 plotted by the ^90^Y decay function. A simple linear regression equation is shown on the chart."}
+base_sheet_cleaned %>% filter(sample_name == "tap30") %>% ggplot() +
+  aes(x = decay_function, y = cpm) + geom_point() +
+      geom_smooth(method="lm", formula = y ~ x, se=FALSE) +
+  stat_smooth_func(geom="text",method="lm",vjust=-1, hjust = .05,parse=TRUE) +
+  ylab("beta decay (dpm)") +
+  xlab(expression(paste({e^{-lambda}[{"90"}[Y]]}^t))) +
+  scale_y_continuous(limits = c(0,4), breaks = seq(0,4,.8))
+
+```
+
+Unfortunately, after comparing the ^90^Y activities across all of the stations, it became apparent that an endogenous source of ^90^Sr was producing ^90^Y somewhere immediately downstream of the treatment plant; possible in the water tower where the ^90^Sr may have sorbed to the pipe wall after bonding with loose carbonate ions.\  
+
+
+```{r figure9, fig.cap = "Figure 12: Scatter plot of ^90^Y activity against distance from plant on each sampling date. The red line indicates the mean ^90^Sr activity in Lake Michigan as determined by the incubation experiment, the red rectangle bounds the standard error of the mean"}
+range_x <- round(max(Meta_Data$distance_from_plant_km))
+
+mean_sr_90_dpm_L <- age_and_activity %>% filter(sample_name %in% ten_jug_sample_list) %>% filter(!(sample_name %in% c("tap7", "tap8", "tap9"))) %>% 
+.[["Sr_90_dpm_L"]] %>% as.numeric(.) %>% .[!is.na(.)] %>% mean(.) %>% round(., 2)
+
+std_dev_sr_90_dpm_L <- age_and_activity %>% filter(sample_name %in% ten_jug_sample_list) %>% filter(!(sample_name %in% c("tap7", "tap8", "tap9"))) %>% .[["Sr_90_dpm_L"]] %>% as.numeric(.) %>% .[!is.na(.)] %>% sd(.) %>% round(., 3)
+
+
+age_and_activity %>% right_join(Meta_Data, by = c("sample_name" = "sample_name_abridged")) %>% filter(sample_name != "tap35" & !is.na(Y_90_dpm_L)) %>% ggplot() + aes(x = distance_from_plant_km, y = Y_90_dpm_L) + geom_point(size = .5) + ylab(bquote(''*~""^90 ~'Y activity (dpm'~L^-1~')'*'')) +xlab("distance from treatment plant (km)") +
+  geom_errorbar(aes(ymin=Y_90_dpm_L-Y_90_error, ymax=Y_90_dpm_L+Y_90_error, width = .01)) +
+  geom_segment(inherit.aes = TRUE, aes(x = 0, y = mean_sr_90_dpm_L, xend = range_x, yend = mean_sr_90_dpm_L), color = "red", size = .1) +
+  annotate("rect", xmin = 0, xmax = range_x, ymin = mean_sr_90_dpm_L - std_dev_sr_90_dpm_L, ymax = mean_sr_90_dpm_L + std_dev_sr_90_dpm_L, alpha = .2,fill = "red")
+
+```
+\    
+At the first station, ^90^Y activities greater than the mean ^90^Sr activity were measured on three separate occasions, which, under the assumption that the activity of ^90^Sr is uniform throughout both Lake Michigan and the pipe system, is impossible.
+
+
+```{r figure10, fig.cap = "Figure 10: Scatter plot of ^90^Y activity plus or minus its propagated error plotted by date with each station delineated.^90^Y activity is positively related to distance from the treatment plant only between stations four and five."}
+activty_all <- age_and_activity %>% right_join(Meta_Data, by = c("sample_name" = "sample_name_abridged")) %>% filter(Station_Num %in% c("1", "3", "4", "5") & !is.na(Y_90_dpm_L)) %>% ggplot() + aes(x = Collection_Date, y = Y_90_dpm_L) + geom_point(size = .5) + ylab(bquote(''*~""^90 ~'Y activity (dpm'~L^-1~')'*'')) +xlab("collection date") +
+  geom_errorbar(aes(ymin=Y_90_dpm_L-Y_90_error, ymax=Y_90_dpm_L+Y_90_error, width = .01)) + geom_line(aes(group = Station_Num, color = Station_Num)) +  labs(col="Station Number") +  scale_color_manual(values=c("#1b9e77", "#d95f02", "#7570b3", "#e7298a"))
+
+activity_4_5 <- age_and_activity %>% right_join(Meta_Data, by = c("sample_name" = "sample_name_abridged"))  %>% filter(Station_Num %in% c("4", "5") & !is.na(Y_90_dpm_L)) %>% ggplot() + aes(x = Collection_Date, y = Y_90_dpm_L) + geom_point(size = .5) + ylab(bquote(''*~""^90 ~'Y activity (dpm'~L^-1~')'*'')) +xlab("collection date") +
+  geom_errorbar(aes(ymin=Y_90_dpm_L-Y_90_error, ymax=Y_90_dpm_L+Y_90_error, width = .01)) + geom_line(aes(group = Station_Num, color = Station_Num)) +  labs(col="Station Number") + scale_color_manual(values=c("#7570b3", "#e7298a"))
+
+side_by_side_plot <- plot_grid(activty_all, activity_4_5, labels = c('A', 'B')) 
+
+side_by_side_plot
+```
+    
+Fortunately, the influence of the endogenously produced ^90^Y on the measured activity dissipated at the most distal stations, four and five. Therefore, water age calculations were only meaningful for samples collected at these two stations.\  
+
+```{r figure11, fig.cap = "Figure 11: ^90^Y derived water ages $\\pm$ the $\\delta$est shown by stations four and five."}
+water_age_plot_df <- Meta_Data %>% select(sample_name_abridged, Station_Num, Collection_Date) %>% left_join(age_and_activity, by = c("sample_name_abridged" = "sample_name")) %>% filter(Station_Num %in% c("4", "5")) %>% mutate(Station_Num = fct_relevel(Station_Num, "4", "5")) %>% filter(!is.na(water_age_hrs))
+
+
+water_age_plot_df %>%
+  ggplot() +
+  aes(x = Collection_Date, y = water_age_hrs) +
+  geom_point(size = 1) +
+  labs(y = "water age (hours)", x = "collection date") +
+  geom_errorbar(aes(ymin=water_age_hrs-10.131, ymax=water_age_hrs+10.131, width = .01)) +
+  geom_line(aes(color = Station_Num)) +
+  scale_color_manual(values=c("#7570b3", "#e7298a")) +
+  labs(color = "station number")
+
+sd_4_5 <- water_age_plot_df %>% group_by(Station_Num, Collection_Date, water_age_hrs) %>% slice(1) %>% pivot_wider(names_from = Station_Num, values_from = water_age_hrs) %>% mutate(difference = `5` - `4`) %>% filter(!is.na(difference)) %>% pull(difference) %>% as.numeric(.) %>% sd(.)
+
+mean_4_5 <- water_age_plot_df %>% group_by(Station_Num, Collection_Date, water_age_hrs) %>% slice(1) %>% pivot_wider(names_from = Station_Num, values_from = water_age_hrs) %>% mutate(difference = `5` - `4`) %>% filter(!is.na(difference)) %>% pull(difference) %>% as.numeric(.) %>% mean(.)
+
+```
+
+The water age at station 4 was 48.21 ± 25.30 hours (n = 6, ± 1 SD) and the water age at station 5 was\ 76.74 ± 14.21 hours (n = 5, ±1 SD). As hypothesized, the water age increased distally from the plant. Water age also increased seasonally, suggesting decreasing water usage during the cooler months;\ most likely because of a reduction in sprinkler usage.
+
+<br>
+<br>
+
+## [Return to Analysis Landing Page](index.html)
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

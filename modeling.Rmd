@@ -1,0 +1,193 @@
+---
+title: "Modeling"
+
+
+output:
+  html_document:
+    theme: united
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+    toc_depth: 2
+    toc_sticky: false
+    self_contained: false
+    css: styles.css
+---
+
+# Modeling
+
+
+```{r setup, include=FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, results = FALSE, fig.align = 'center')
+
+library(tidyverse)
+library(here)
+library(ggthemes)
+library(data.table)
+library(vegan)
+library("Hmisc")
+library(rstatix)
+library(ggprism)
+
+
+#aux functions used
+source(here("aux_functions", "distance_by_rep_group.R"), local = TRUE)
+
+#Set a ggplot theme
+theme_set(theme_minimal())
+
+```
+
+
+```{r, include = FALSE}
+
+ten_jug_sample_list <- c("tap1", "tap2", "tap3", "tap4",
+                       "tap5", "tap6", "tap8", "tap7",
+                       "tap9")
+
+five_sequence <- c("tap44", "tap45", "tap46", "tap47", "tap48")
+
+field_sample_list <- c("tap13", "tap11", "tap14", "tap15",
+                       "tap18", "tap19", 
+                       "tap20", "tap21", "tap22", "tap23",
+                       "tap23", "tap24", "tap25", "tap26",
+                       "tap27", "tap28", "tap30",
+                       "tap31", "tap32", "tap33", "tap34",
+                       "tap35", "tap36", "tap37", "tap49", "tap50", "tap51", "tap52", "tap53", "tap54")
+
+#max check name of Meta_Data
+Meta_Data <- read_csv(here("data", "meta_data.csv"),
+                      col_types = cols(Collection_Date = col_date(format = "%m/%d/%y"), date_time_filtering = col_datetime(format = "%m/%d/%y %H:%M"), 
+                                      date_time_sampling = col_datetime(format = "%m/%d/%y %H:%M"),                                       date_time_yield_monitor_added = col_datetime(format = "%m/%d/%y %H:%M"))) %>% mutate(Station_Num = fct_relevel(Station_Num, "Post Filtration", "Post Chlorination", "Finished Water", "1", "3", "4", "5")) %>%
+               mutate(distance_from_plant_km = round(miles_from_plant*1.61,2)) %>% mutate(Location_Clean = fct_relevel(Location_Clean, "Treatment Plant", "Stn. 1", "Stn. 3", "Stn. 4", "Stn. 5"))
+
+water_age_4_5 <- read_csv(here("data", "water_age_4_5.csv")) %>% select(-Station_Num)
+water_age_4_5[[11,6]] <- 39.3
+
+#update metadata
+Meta_Data <- Meta_Data %>% left_join(water_age_4_5, by = c("sample_name_abridged" = "sample_name")) %>% group_by(sample_name_abridged) %>% slice(1) %>% filter(sample_name_abridged != "tap12")
+
+#import decontamm'ed and trimmed AT/TT/MD from script 4
+clean_TT <- read_csv(here("data", "TT.csv"))
+
+
+#import decontamm'ed, trimmed, and averaged AT/TT/MD from script 4.55
+combined_AT <- read_csv(here("data", "AT.csv")) %>% filter(sample_name_abridged != "tap12")
+
+Abundance_Table <- combined_AT %>% column_to_rownames(var = "sample_name_abridged")
+```
+
+Computation for the NMDS analyses was conducted in R, using the vegan package and the\ function, metaMDS therein (RB et al. 2013). The distance matrices were computed using the\ bray function, and the modelling engine was set to monoMDS. After creating the model, the\ function envfit was called to model dissolved oxygen, water temperature, and free chlorine as a\ function of community relatedness. The results from the envfit model were then displayed on the\ two dimensional NMDS ordination space as arrows pointing in the direction of strongest\ correlation.
+
+```{r figure12, fig.cap = "Figure 12: NMDS results of all samples labelled by station number, color-coded by sample collection date. The environmental fitting function results are displayed as arrows originating at the origin and pointing towards the direction of strongest correlation to sample separation. Arrows A is DO, B is water temperature, C is free chlorine, and D is pH."}
+
+set.seed(123)
+
+mMDS <- metaMDS(Abundance_Table,distance = "bray", 
+                k=10, engine = c("monoMDS"),trymax = 100, 
+                autotransform = F, display = "sample")
+
+sample_DF <- tibble(mMDS$points[,1], mMDS$points[,2], row.names(mMDS$points))
+species_DF <- tibble(mMDS$species[,1], mMDS$species[,2], row.names(mMDS$species))
+
+colnames(sample_DF) <- c("NMDS1", "NMDS2", "sample_name_abridged")
+colnames(species_DF) <- c("NMDS1", "NMDS2", "ASV_NUM")
+
+sample_DF <- sample_DF %>% left_join(Meta_Data, by = "sample_name_abridged")
+
+lab_dates <- pretty(sample_DF$Collection_Date)
+
+ef <- envfit(mMDS ~ DO_mg_L + Water_Temp_C + Chlorine_Free_mg_L + pH, Meta_Data, na.rm = TRUE)
+
+dO_segment <- data.frame("ArrowXStart" = 0, "ArrowYStart" = 0, "ArrowXEnd" = ef$vectors$arrows[1,1], "ArrowYEnd" = ef$vectors$arrows[1,2])
+water_temp_segment <- data.frame("ArrowXStart" = 0, "ArrowYStart" = 0, "ArrowXEnd" = ef$vectors$arrows[2,1], "ArrowYEnd" = ef$vectors$arrows[2,2])
+chl_segment <- data.frame("ArrowXStart" = 0, "ArrowYStart" = 0, "ArrowXEnd" = ef$vectors$arrows[3,1], "ArrowYEnd" = ef$vectors$arrows[3,2])
+pH_segment <- data.frame("ArrowXStart" = 0, "ArrowYStart" = 0, "ArrowXEnd" = ef$vectors$arrows[4,1], "ArrowYEnd" = ef$vectors$arrows[4,2])
+
+sample_plot <- sample_DF %>% ggplot() +
+  aes(x = NMDS1, y = NMDS2, label = Station_Num, color = as.numeric(Collection_Date)) +
+  geom_text(size = 4) +
+  geom_segment(inherit.aes = FALSE, aes(x = ArrowXStart, y = ArrowYStart, xend = ArrowXEnd, yend = ArrowYEnd), data = dO_segment,
+               linewidth = .3, arrow = arrow(length = unit(0.3, "inches"))) +
+  geom_segment(inherit.aes = FALSE, aes(x = ArrowXStart, y = ArrowYStart, xend = ArrowXEnd, yend = ArrowYEnd), data = water_temp_segment,
+               linewidth = .3, arrow = arrow(length = unit(0.3, "inches"))) +
+  geom_segment(inherit.aes = FALSE, aes(x = ArrowXStart, y = ArrowYStart, xend = ArrowXEnd, yend = ArrowYEnd), data = chl_segment,
+               linewidth = .3, arrow = arrow(length = unit(0.3, "inches"))) +
+  geom_segment(inherit.aes = FALSE, aes(x = ArrowXStart, y = ArrowYStart, xend = ArrowXEnd, yend = ArrowYEnd), data = pH_segment,
+               linewidth = .3, arrow = arrow(length = unit(0.3, "inches"))) +
+  scale_colour_viridis_c(breaks = as.numeric(lab_dates), 
+                         labels = c("Sep", "Oct", "Nov", "Dec", "Jan"),
+                         guide = guide_colorbar(reverse = TRUE),
+                         direction = -1,
+                         option = "D") +
+              labs(color = "Collection Date") 
+
+
+range_x <- abs(ggplot_build(sample_plot)$layout$panel_scales_x[[1]]$range$range[1] - ggplot_build(sample_plot)$layout$panel_scales_x[[1]]$range$range[2])
+range_y <- abs(ggplot_build(sample_plot)$layout$panel_scales_y[[1]]$range$range[1] - ggplot_build(sample_plot)$layout$panel_scales_y[[1]]$range$range[2])
+
+sample_plot <- sample_plot +
+  annotate("text", x = ef$vectors$arrows[1,1] - .02 * range_x, y = ef$vectors$arrows[1,2], label = "A", size = 4) +
+  annotate("text", x = ef$vectors$arrows[2,1] + .03 * range_x, y = ef$vectors$arrows[2,2] + .01 * range_y, label = "B", size = 4) +
+  annotate("text", x = ef$vectors$arrows[3,1] + .03 * range_x, y = ef$vectors$arrows[3,2] + .02 * range_y, label = "C", size = 4) +
+  annotate("text", x = ef$vectors$arrows[4,1] - .03 * range_x, y = ef$vectors$arrows[4,2] - .01 * range_y, label = "D", size = 4)
+
+sample_plot
+
+
+```
+
+The samples cluster into three groups, an early season group, a late season group, and a group\ found in the treatment plant. The influence of DO, water temperature, and free chlorine on\ sample separation were all significant (p < 0.05). Water temperature and DO tended to have the\ opposite effect on community differences: as temperature and DO are inversely related. Higher\ pH tended to pull the samples into the early season group, suggesting that pH is an important\ seasonal parameter.\
+\
+
+
+A second NMDS was run on the subset of samples with resolved water age measurements (n =\ 11). The water age was only resolved for stations 4 & 5 because of high 90Y readings\ measured at stations 1 & 3, which indicated the influence of a reservoir of 90Y with an unknown,\ potentially variable activity. On the NMDS, the starting number of dimensions was set to, k = 3,\ and the stress of the resulting model was 0.078, indicating that the model fit the data moderately\ strong.
+
+
+```{r figure13, fig.cap = "Figure 13 : NMDS results of all samples labelled by water age classification, color-coded by radionuclide-derived water age."}
+samples_with_age <- Meta_Data %>% filter(!is.na(water_age_hrs)) %>% pull(sample_name_abridged)
+
+#OK - let's group them like this:
+grouping <- data.frame(sample_name_abridged = samples_with_age, 
+                       water_age_factor = as.factor(c("moderate", "moderate", "young", "old", 
+                                                      "moderate", "old", "young", "moderate", 
+                                                      "young", "old", "young")))
+
+water_age_MD <- Meta_Data %>% right_join(grouping, by = "sample_name_abridged") %>%
+  mutate(water_age_factor = fct_relevel(water_age_factor, "young", "moderate", "old"))
+
+
+
+mMDS <- metaMDS(Abundance_Table[which(row.names(Abundance_Table) %in% samples_with_age), ],distance = "bray", 
+                k=3, engine = c("monoMDS"),trymax = 100, 
+                autotransform = F, display = "sample")
+
+sample_DF <- tibble(mMDS$points[,1], mMDS$points[,2], row.names(mMDS$points))
+species_DF <- tibble(mMDS$species[,1], mMDS$species[,2], row.names(mMDS$species))
+
+colnames(sample_DF) <- c("NMDS1", "NMDS2", "sample_name_abridged")
+colnames(species_DF) <- c("NMDS1", "NMDS2", "ASV_NUM")
+
+sample_DF <- sample_DF %>% left_join(water_age_MD, by = "sample_name_abridged")
+
+
+sample_plot <- sample_DF %>% ggplot() +
+  aes(x = NMDS1, y = NMDS2, label = water_age_factor, color = water_age_hrs) +
+  geom_text(size = 4, fontface = "bold") +
+  labs(color = "water age (hrs)") +
+  scale_colour_viridis_c( guide = guide_colorbar(reverse = TRUE),
+                          direction = 1,
+                          option = "H") +
+  scale_x_continuous(limits = c(-0.6, 0.5))
+
+sample_plot
+```
+
+The water age does not appear to be a driver of community change in the range of water ages\ sampled (25 – 97 hours). Previous studies have shown that alpha diversity of microbial\ communities does not change significantly until sampling points are separated by long distances\ (> 46 km); hence, it is possible that only water ages higher than those studied significantly\ influence microbial community composition (A. Pinto et al. 2014). As shown in chapter 2, most\ of the microbial community in any one sample was common to other samples; therefore, any\ changes that did occur in the microbial communities may simply be indicative of stochastic\ processes such as biofilm sloughing.
+
+<br>
+<br>
+
+## [Return to Analysis Landing Page](index.html)
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

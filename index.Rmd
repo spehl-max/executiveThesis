@@ -6,9 +6,9 @@ output:
     theme: united
     toc: true
     toc_float: true
-    toc_collapsed: false
+    toc_collapsed: true
     toc_depth: 3
-    self_contained: false
+    self_contained: true
     toc_sticky: false
     css: styles.css
 baseurl: "/executiveThesis"  
@@ -43,21 +43,46 @@ Elucidating water age is a difficult task: Hydrologic models can be used to esti
 
 ## Data Analysis and Results
 
-Click on any of the links to see how each dataset was analyzed.
+Click on any of the links to see how each dataset was analyzed. \
 
-### 1. [Water Chemistry and Microbiology](water-chemistry-and-microbiology.html)
+<br><br>
 
-`r # 2. [Radiochemistry](radiochemistry.html)` `r # 3. [Modeling](modeling.html)`
+::: fake-h2
+1. [Water Chemistry and Microbiology](water-chemistry-and-microbiology.html) \
+:::
 
+<br><br>
+
+::: fake-h2
+2. [Radiochemistry](radiochemistry.html) \
+:::
+
+<br><br>
+
+::: fake-h2
+3. [Modeling](modeling.html) \
+:::
+
+<br><br><br>
 
 ## Conclusion
 
-Coming Soon!
+::: indent
+At the spatial scale studied (0 - 5.8 km from the treatment plant), the microbial community\ correlates weakly with water age. Following water treatment, a community of lake microbes\ remained in the pipe system. The flowing water was then seeded by the pipe biofilm near the\ treatment plant, and a core group of microbes was established. Past studies have observed a\ similar trend: Researchers have hypothesized that the bulk water is seeded by microbes close to\ the treatment plant, and that this community determines the core microbiome. Furthermore, many studies have found a consistent core community that is relatively\ constant throughout distribution systems. After\ becoming established, the core community has been shown to remain stable until sampling\ points are separated by > 46 km. Water age at any particular site tended to\ vary more than expected, ranging from 25.3 – 49.58 hours at station 4, and 58.0 – 96.6 hours at\ station 5, indicating that water age is loosely correlated to pipe distance. A seasonal increase in\ water age, likely associated with decreased lawn maintenance, was also observed.\ 
+:::
+
+::: indent 
+Evidently, a reservoir of unsupported ^90^Y exists in the pipe system near the treatment\ plant. The reservoir is likely bound to the pipe scale, sloughing at stochastic rates. To minimize\ the likelihood of sloughing, future studies should either flush the hydrants for long periods of\ time (> 10 minutes), or sample domestic taps. Long flushing times will not substantially alter the\ location from which water was sampled because the volume of flushed water is significantly\ lower than the volume of water within the pipe system.
+:::
 
 
 
-## Contact
-
+::: fake-h2
+Contact
+:::
 
 If you have any questions or feedback, feel free to reach out to me at [spehlmannm\@icloud.com](mailto:spehlmannm@icloud.com).
 
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
+
+<script src = "custom.js"> </ script>
