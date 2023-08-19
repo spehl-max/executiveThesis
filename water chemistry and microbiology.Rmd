@@ -261,5 +261,5 @@ No precise correlation between distance from the treatment plant and _Legionella
 <br>
 <br>
 
-## [Return to Analysis Landing Page](index.html)
+## [Return to Analysis Landing Page](index.html#Data_Analysis_and_Results)
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
